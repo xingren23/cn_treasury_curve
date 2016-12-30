@@ -66,10 +66,12 @@ def get_pivot_data():
 
 def get_zipline_format():
     pivot_data = get_pivot_data()
-    all_china_bond = pd.DataFrame(pivot_data, columns=[u'日期', u'0.08', u'0.25', u'0.5', u'1.0', u'2.0', u'3.0',
-                                                       u'5.0', u'7.0', u'10.0', u'20.0', u'30.0'])
-    all_china_bond.columns =['Time Period', '1month', '3month','6month', '1year', '2year', '3year', '5year', '7year', '10year', '20year', '30year']
-    all_china_bond.set_index(['Time Period'], inplace=True)
+    # print pivot_data.columns , pivot_data
+    all_china_bond = pd.DataFrame(pivot_data, columns=[0.08, 0.25, 0.5, 1.0, 2.0, 3.0,
+                                                       5.0, 7.0, 10.0, 20.0, 30.0])
+    # print all_china_bond
+    all_china_bond.columns =['1month', '3month','6month', '1year', '2year', '3year', '5year', '7year', '10year', '20year', '30year']
+    all_china_bond.index.name='Time Period'
     return all_china_bond
 
 @click.command()
